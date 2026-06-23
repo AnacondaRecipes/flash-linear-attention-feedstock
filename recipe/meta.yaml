@@ -1,0 +1,53 @@
+{% set name = "flash-linear-attention" %}
+{% set version = "0.5.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/flash_linear_attention-{{ version }}.tar.gz
+  sha256: 8840fd4c37de8b0612dc8fd493867f3d330672ba2f17c024a2ce37239634e247
+
+build:
+  number: 0
+  # fla-core ==0.5.1 (a hard run dep) is only available on linux-64 on pkgs/main
+  skip: true  # [not linux64]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+
+requirements:
+  host:
+    - python
+    - pip
+    - setuptools >=64
+    - wheel
+  run:
+    - python
+    - fla-core =={{ version }}
+    - transformers >=4.45.0
+
+test:
+  imports:
+    - fla
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/fla-org/flash-linear-attention
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: Fast linear attention models and layers
+  description: |
+    flash-linear-attention provides efficient Triton-based implementations of
+    linear-attention and related sub-quadratic sequence-modeling layers and
+    models (built on fla-core), packaged as the fla.layers and fla.models
+    extensions of the fla namespace for use with PyTorch and transformers.
+  doc_url: https://github.com/fla-org/flash-linear-attention
+  dev_url: https://github.com/fla-org/flash-linear-attention
+
+extra:
+  recipe-maintainers:
+    - chrisdeutsch
