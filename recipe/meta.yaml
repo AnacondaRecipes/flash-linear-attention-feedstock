@@ -29,6 +29,9 @@ requirements:
 test:
   imports:
     - fla
+    # fla/__init__.py comes from fla-core and swallows ImportError for fla.models;
+    # import fla.models directly to actually exercise this package's content
+    - fla.models
   commands:
     - pip check
   requires:
