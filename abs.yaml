@@ -1,0 +1,7 @@
+# TEMPORARY — remove before merge.
+# flash-linear-attention 0.4.1 hard-pins fla-core ==0.4.1, which is not yet on
+# pkgs/main (it is in review at fla-core-feedstock#2). Resolve it from that PR's
+# staging channel so CI can build/test. Once fla-core 0.4.1 lands on pkgs/main,
+# delete this file.
+channels:
+  - https://staging.continuum.io/pbp/fs/fla-core-feedstock/pr2/0d1ecd48c0d4813a86443fd19ec3fba3835b42f5

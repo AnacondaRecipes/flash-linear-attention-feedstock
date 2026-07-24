@@ -1,5 +1,5 @@
 {% set name = "flash-linear-attention" %}
-{% set version = "0.5.1" %}
+{% set version = "0.4.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/flash_linear_attention-{{ version }}.tar.gz
-  sha256: 8840fd4c37de8b0612dc8fd493867f3d330672ba2f17c024a2ce37239634e247
+  sha256: 127ee7273ed15ac17f72bcf4c75e1051719d8fbe0a2d1d047e59406f36d81ee2
 
 build:
   number: 0
-  # fla-core ==0.5.1 (a hard run dep) is only available on linux-64 on pkgs/main
+  # fla-core ==0.4.1 (a hard run dep) is only available on linux-64 on pkgs/main
   skip: true  # [not linux64]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
@@ -19,12 +19,15 @@ requirements:
   host:
     - python
     - pip
-    - setuptools >=64
+    - setuptools
     - wheel
   run:
     - python
+    # fla-core provides the fla.ops/fla.modules half of the fla namespace and
+    # transitively supplies einops/packaging/triton/pytorch that this package
+    # also imports; upstream 0.4.1 declares only these two base dependencies.
     - fla-core =={{ version }}
-    - transformers >=4.45.0
+    - transformers
 
 test:
   imports:
