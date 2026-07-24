@@ -4,4 +4,4 @@
 # staging channel so CI can build/test. Once fla-core 0.4.1 lands on pkgs/main,
 # delete this file.
 channels:
-  - https://staging.continuum.io/pbp/fs/fla-core-feedstock/pr2/0d1ecd48c0d4813a86443fd19ec3fba3835b42f5
+  - https://staging.continuum.io/pbp/fs/fla-core-feedstock/pr2/0d1ecd4
