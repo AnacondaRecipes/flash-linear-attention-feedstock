@@ -25,6 +25,13 @@ requirements:
     - python
     - fla-core =={{ version }}
     - transformers >=4.45.0
+  run_constrained:
+    # tilelang
+    - tilelang >=0.1.9
+    # conv1d
+    - causal-conv1d >=1.4.0
+    # benchmark
+    - datasets >=3.3.0
 
 test:
   imports:
