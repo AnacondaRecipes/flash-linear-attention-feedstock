@@ -33,7 +33,7 @@ requirements:
     # benchmark
     - datasets >=3.3.0
 
-    - triton <3.5.1
+    - triton <3.8
 
 test:
   imports:
