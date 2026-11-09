@@ -33,8 +33,6 @@ requirements:
     # benchmark
     - datasets >=3.3.0
 
-    - triton <3.9
-
 test:
   imports:
     - fla
