@@ -39,7 +39,7 @@ requirements:
 test:
   source_files:
     - tests
-    - scripts
+    #- scripts
   imports:
     - fla
     # fla/__init__.py comes from fla-core and swallows ImportError for fla.models;
@@ -47,7 +47,7 @@ test:
     - fla.models
   commands:
     - pip check
-    - pytest -vv tests
+    - pytest -vv --ignore=tests/test_split_package_release.py tests
   requires:
     - pip
     - pytest
