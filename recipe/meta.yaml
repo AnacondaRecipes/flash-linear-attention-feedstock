@@ -26,6 +26,9 @@ requirements:
     - fla-core =={{ version }}
     - transformers >=4.45.0
   run_constrained:
+    # cuda
+    - pytorch >=2.7.0
+    - triton >=3.3
     # tilelang
     - tilelang >=0.1.9
     # conv1d
