@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/flash_linear_attention-{{ version }}.tar.gz
-  sha256: c053d3a75c8f5b725063f719ae6bce0f4d9dac6da32735be8ae7d485a6c9820f
+  url: https://github.com/fla-org/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 7c3132c3d5999aea1888931417fa4525c1c1fbd6243a9d4ea71a125dd3e7a962
 
 build:
   number: 0
@@ -37,6 +37,8 @@ requirements:
     - datasets >=3.3.0
 
 test:
+  source_files:
+    - tests
   imports:
     - fla
     # fla/__init__.py comes from fla-core and swallows ImportError for fla.models;
@@ -44,8 +46,10 @@ test:
     - fla.models
   commands:
     - pip check
+    - pytest -vv tests
   requires:
     - pip
+    - pytest
 
 about:
   home: https://github.com/fla-org/flash-linear-attention
