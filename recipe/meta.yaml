@@ -39,6 +39,7 @@ requirements:
 test:
   source_files:
     - tests
+    - scripts
   imports:
     - fla
     # fla/__init__.py comes from fla-core and swallows ImportError for fla.models;
