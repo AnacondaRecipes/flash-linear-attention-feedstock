@@ -1,18 +1,18 @@
 {% set name = "flash-linear-attention" %}
-{% set version = "0.5.1" %}
+{% set version = "0.5.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/flash_linear_attention-{{ version }}.tar.gz
-  sha256: 8840fd4c37de8b0612dc8fd493867f3d330672ba2f17c024a2ce37239634e247
+  url: https://github.com/fla-org/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 7c3132c3d5999aea1888931417fa4525c1c1fbd6243a9d4ea71a125dd3e7a962
 
 build:
   number: 0
-  # fla-core ==0.5.1 (a hard run dep) is only available on linux-64 on pkgs/main
-  skip: true  # [not linux64]
+  # fla-core ==0.5.2 (a hard run dep) is only available on linux-64 on pkgs/main
+  skip: true  # [py<310 or not linux64]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
@@ -25,6 +25,16 @@ requirements:
     - python
     - fla-core =={{ version }}
     - transformers >=4.45.0
+  run_constrained:
+    # cuda
+    - pytorch >=2.7.0
+    - triton >=3.3
+    # tilelang
+    - tilelang >=0.1.9
+    # conv1d
+    - causal-conv1d >=1.4.0
+    # benchmark
+    - datasets >=3.3.0
 
 test:
   imports:
